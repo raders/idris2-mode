@@ -123,7 +123,7 @@
 
 (defun idris2-send (sexp)
   (let ((ret (shell-command-to-string
-              (concat "/Users/srader/.idris2/bin/idris2 "
+              (concat "idris2 "
                       (file-name-nondirectory buffer-file-name)
                       " --client '" sexp "'"))))
     (message "%s" ret)))
