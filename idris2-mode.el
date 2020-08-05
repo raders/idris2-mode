@@ -61,6 +61,7 @@
 
   (define-key idris2-mode-map (kbd "C-c C-r") 'idris2-load-file)
   (define-key idris2-mode-map (kbd "C-c C-t") 'idris2-type-at-point)
+  (define-key idris2-mode-map (kbd "C-c C-d") 'idris2-doc)
   (define-key idris2-mode-map (kbd "C-c C-c") 'idris2-case-split)
   (define-key idris2-mode-map (kbd "C-c C-a") 'idris2-add-clause)
   (define-key idris2-mode-map (kbd "C-c C-l") 'idris2-make-lemma)
@@ -115,6 +116,12 @@
   (idris2-load-file)
   (let* ((thing (current-word)))
     (idris2-send (format ":t %s" thing ))))
+
+(defun idris2-doc ()
+  (interactive)
+  (idris2-load-file)
+  (let* ((thing (current-word)))
+    (idris2-send (format ":doc %s" thing ))))
 
 
 
