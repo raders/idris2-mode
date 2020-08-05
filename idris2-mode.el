@@ -54,8 +54,6 @@
   (setq font-lock-defaults '(idris2-highlights)))
 
 (defun idris2-setup ()
-  "Setup variables for editing Haskell files."
-  
   (setq whitespace-line-column 70)
   (make-local-variable 'tab-stop-list)
   (setq tab-stop-list (number-sequence 2 80 2))
@@ -106,7 +104,6 @@
     (idris2-send (format ":ps! %d %s" l n))))
 
 (defun idris2-make-cases-from-hole ()
-  "Make a case expression from the metavariable at point."
   (interactive)
   (let* ((n (current-word))
          (l (line-number-at-pos)))
