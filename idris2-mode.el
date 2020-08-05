@@ -70,7 +70,6 @@
   (define-key idris2-mode-map (kbd "C-c C-m") 'idris2-make-cases-from-hole))
 
 
-;; returns promise
 (defun idris2-load-file ()
   (interactive)
   (save-buffer)
