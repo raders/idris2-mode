@@ -1,5 +1,5 @@
 # idris2-mode
-Emacs mode for Idris2
+Emacs mode for Idris2.
 
 Add the following lines to your init.el file:
 
@@ -8,3 +8,12 @@ Add the following lines to your init.el file:
 (autoload 'idris2-mode "idris2-mode" "Idris2 Mode." t)
 (add-to-list 'auto-mode-alist '("\\.idr\\'" . idris2-mode))
 ```
+## Commands
+* `C-c C-r` Reload File
+* `C-c C-t` Show Type
+* `C-c C-a` Create an initial clause for a type declaration
+* `C-c C-c` Case Split
+* `C-c C-m` Make Case
+* `C-c C-l` Make Lemma
+* `C-c C-s` Proof Search
+* `C-c C-d` Show docs
