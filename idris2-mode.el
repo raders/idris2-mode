@@ -58,6 +58,7 @@
   (make-local-variable 'tab-stop-list)
   (setq tab-stop-list (number-sequence 2 80 2))
   (setq indent-line-function 'indent-relative)
+  (setq auto-revert-verbose nil)
 
   (define-key idris2-mode-map (kbd "C-c C-r") 'idris2-load-file)
   (define-key idris2-mode-map (kbd "C-c C-t") 'idris2-type-at-point)
@@ -132,6 +133,7 @@
     (message "%s" ret)))
 
 (defun idris2-send (sexp)
+  (call-process "touch" nil standard-output nil (file-name-nondirectory buffer-file-name))
   (let* ((cmd (concat (file-name-nondirectory buffer-file-name)
                       " --client '" sexp "'"))
          (ret (with-output-to-string
@@ -139,6 +141,8 @@
                               (file-name-nondirectory buffer-file-name)
                               "--client"
                               sexp))))
+    ;;(message "cmd: %s" cmd)
+    
     (message "%s" ret)))
 
 (add-hook 'idris2-mode-hook 'idris2-setup)
