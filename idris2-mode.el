@@ -73,21 +73,19 @@
 (defun idris2-load-file ()
   (interactive)
   (save-buffer)
-  (idris2-send (concat ":l " (file-name-nondirectory buffer-file-name))))
+  (message (idris2-send (concat ":l " (file-name-nondirectory buffer-file-name)))))
 
 (defun idris2-make-lemma ()
   (interactive)
   (let* ((n (current-word))
          (l (line-number-at-pos)))
-    ;;(idris2-load-file)
-    (idris2-send (format ":ml! %d %s" l n))))
+    (message (idris2-send (format ":ml! %d %s" l n)))))
 
 (defun idris2-add-clause ()
   (interactive)
   (let* ((n (current-word))
          (l (line-number-at-pos)))
-    ;;(idris2-load-file)
-    (idris2-send (format ":ac! %d %s" l n))))
+    (message (idris2-send (format ":ac! %d %s" l n)))))
 
 
 (defun idris2-case-split ()
@@ -95,34 +93,34 @@
   (let* ((n (current-word))
          (l (line-number-at-pos))
          (col (current-column)))
-    ;;(idris2-load-file)
-    (idris2-send (format ":cs! %d %d %s" l col n))))
+    (message (idris2-send (format ":cs! %d %d %s" l col n)))))
 
 (defun idris2-proof-search ()
   (interactive)
   (let* ((n (current-word))
          (l (line-number-at-pos)))
-    ;;(idris2-load-file)
-    (idris2-send (format ":ps! %d %s" l n))))
+    (message (idris2-send (format ":ps! %d %s" l n)))))
 
 (defun idris2-make-cases-from-hole ()
   (interactive)
   (let* ((n (current-word))
          (l (line-number-at-pos)))
-    ;;(idris2-load-file)
-    (idris2-send (format ":mc! %d %s" l n))))
+    (message (idris2-send (format ":mc! %d %s" l n)))))
 
 (defun idris2-type-at-point ()
   (interactive)
-  ;;(idris2-load-file)
-  (let* ((thing (current-word)))
-    (idris2-send (format ":t %s" thing ))))
+  (let* ((n (current-word))
+         (l (line-number-at-pos))
+         (col (current-column))
+         (ret (idris2-send (format ":t %s" n))))
+    (if (equal (string-match "Undefined name" ret) nil)
+        (message ret)
+        (message (idris2-send (format ":typeat %d %d %s" l (1+ col) n))))))
 
 (defun idris2-doc ()
   (interactive)
-  ;;(idris2-load-file)
   (let* ((thing (current-word)))
-    (idris2-send (format ":doc %s" thing ))))
+    (message (idris2-send (format ":doc %s" thing )))))
 
 (defun idris2-send1 (sexp)
   (let* ((cmd (concat "idris2 "
@@ -141,9 +139,7 @@
                               (file-name-nondirectory buffer-file-name)
                               "--client"
                               sexp))))
-    ;;(message "cmd: %s" cmd)
-    
-    (message "%s" ret)))
+    ret))
 
 (add-hook 'idris2-mode-hook 'idris2-setup)
 
