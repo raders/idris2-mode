@@ -19,3 +19,4 @@ update the files on disk.
 * `C-c C-l` Make Lemma
 * `C-c C-s` Proof Search
 * `C-c C-d` Show docs
+* `C-c C-w` Make With
