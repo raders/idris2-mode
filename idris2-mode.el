@@ -72,7 +72,8 @@
   (define-key idris2-mode-map (kbd "C-c C-a") 'idris2-add-clause)
   (define-key idris2-mode-map (kbd "C-c C-l") 'idris2-make-lemma)
   (define-key idris2-mode-map (kbd "C-c C-s") 'idris2-proof-search)
-  (define-key idris2-mode-map (kbd "C-c C-m") 'idris2-make-cases-from-hole))
+  (define-key idris2-mode-map (kbd "C-c C-m") 'idris2-make-cases-from-hole)
+  (define-key idris2-mode-map (kbd "C-c C-w") 'idris2-make-with))
 
 
 (defun idris2-load-file ()
@@ -111,6 +112,12 @@
   (let* ((n (current-word))
          (l (line-number-at-pos)))
     (message (idris2-send (format ":mc! %d %s" l n)))))
+
+(defun idris2-make-with ()
+  (interactive)
+  (let* ((n (current-word))
+         (l (line-number-at-pos)))
+    (message (idris2-send (format ":mw! %d %s" l n)))))
 
 (defun idris2-type-at-point ()
   (interactive)
