@@ -53,12 +53,17 @@
   (setq font-lock-multiline t)
   (setq font-lock-defaults '(idris2-highlights)))
 
+
+
 (defun idris2-setup ()
-  (setq whitespace-line-column 70)
+  ;;(setq whitespace-line-column 70)
   (make-local-variable 'tab-stop-list)
   (setq tab-stop-list (number-sequence 2 80 2))
   (setq indent-line-function 'indent-relative)
+  (make-local-variable 'auto-revert-verbose)
   (setq auto-revert-verbose nil)
+  (make-local-variable 'auto-revert-interval)
+  (setq auto-revert-interval 0.2)
 
   (define-key idris2-mode-map (kbd "C-c C-r") 'idris2-load-file)
   (define-key idris2-mode-map (kbd "C-c C-t") 'idris2-type-at-point)
