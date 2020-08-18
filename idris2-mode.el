@@ -149,6 +149,7 @@
          (ret (with-output-to-string
                 (call-process "idris2" nil standard-output nil
                               (file-name-nondirectory buffer-file-name)
+                              "--no-color"
                               "--client"
                               sexp))))
     ret))
