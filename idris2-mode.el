@@ -151,11 +151,10 @@
 
 (defun idris2-send (sexp)
   (call-process "touch" nil standard-output nil (file-name-nondirectory buffer-file-name))
-  (let* ((cmd (concat (file-name-nondirectory buffer-file-name)
-                      " --client '" sexp "'"))
-         (ret (with-output-to-string
+  (let* ((ret (with-output-to-string
                 (call-process "idris2" nil standard-output nil
                               (file-name-nondirectory buffer-file-name)
+                              "-p" "contrib"
                               "--no-color"
                               "--client"
                               sexp))))
