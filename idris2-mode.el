@@ -155,6 +155,7 @@
                 (call-process "idris2" nil standard-output nil
                               (file-name-nondirectory buffer-file-name)
                               "-p" "contrib"
+                              "-p" "network"
                               "--no-color"
                               "--client"
                               sexp))))
